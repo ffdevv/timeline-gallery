@@ -4,27 +4,33 @@ import './App.css';
 import Timeline from './components/Timeline';
 import Gallery from './components/Gallery';
 import prodApi, {testApi} from './api';
-
-const images = [
-  {
-    original: 'https://picsum.photos/id/1018/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1018/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1015/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1019/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  },
-];
+import { useState } from 'react';
 
 function App() {
+  const api = testApi;
+  const [currentMilestone, setCurrentMilestone] = useState(false);
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    api.getImagesData().then(data => {
+      setImages(data.imagesArray);
+      setIsLoading(false);
+    })
+  }, [])
+
+  if (isLoading){
+    return (
+      <div className="w-100 text-center">
+        <Spinner animation="grow" variant="secondary" />
+      </div>
+    )
+  }
+
   return (
     <div className="App">
-      <Timeline api={testApi}/>
-      <Gallery images={images} />
+      <Timeline itemsArray={itemsArray} itemsMap={itemsMap} />
+      <Gallery imagesArray={imagesArray} imagesMap={imagesMap} />
     </div>
   );
 }

@@ -75,8 +75,46 @@ export const testApi = {
     },
   }, 500),
   getImagesData: () => promise({
-    imagesArray: [],
-    imagesMap: {}
+    imagesArray: [
+      {
+        original: 'https://picsum.photos/id/1018/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1018/250/150/',
+        id: 1,
+        timeline: 1
+      },
+      {
+        original: 'https://picsum.photos/id/1015/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1015/250/150/',
+        id: 2,
+        timeline: 1
+      },
+      {
+        original: 'https://picsum.photos/id/1019/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1019/250/150/',
+        id: 3,
+        timeline: 2
+      },
+    ],
+    imagesMap: {
+      "1":  {
+        original: 'https://picsum.photos/id/1018/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1018/250/150/',
+        id: 1,
+        timeline: 1
+      },
+      "2":  {
+        original: 'https://picsum.photos/id/1015/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1015/250/150/',
+        id: 2,
+        timeline: 1
+      },
+      "3":  {
+        original: 'https://picsum.photos/id/1019/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1019/250/150/',
+        id: 3,
+        timeline: 2
+      },
+    }
   }, 500)
 }
 
