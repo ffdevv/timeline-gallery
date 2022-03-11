@@ -1,0 +1,9 @@
+.horizontal-timeline {
+  height: 6rem;
+  margin: 1rem auto;
+  font-size: 1rem;
+}
+
+.horizontal-timeline .events, .horizontal-timeline .buttons li {
+  top: 70% !important;
+}
