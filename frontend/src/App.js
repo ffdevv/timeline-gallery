@@ -8,29 +8,36 @@ import { useState } from 'react';
 
 function App() {
   const api = testApi;
-  const [currentMilestone, setCurrentMilestone] = useState(false);
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [currentItem, setCurrentItem] = useState(false);
+  const [items, setItems] = useState({})
+  const [images, setImages] = useState({});
+  const [loading, setLoading] = useState("loading ui");
 
   useEffect(() => {
-    api.getImagesData().then(data => {
-      setImages(data.imagesArray);
-      setIsLoading(false);
+    setLoading("fetching timeline");
+    api.getTimelineData().then(data => {
+      setItems(data);
+      setLoading("fetching images");
+      api.getImagesData().then(data => {
+        setImages(data);
+        setLoading(false);
+      })
     })
   }, [])
 
-  if (isLoading){
+  if (loading !== false){
     return (
       <div className="w-100 text-center">
         <Spinner animation="grow" variant="secondary" />
+        {loading}
       </div>
     )
   }
 
   return (
     <div className="App">
-      <Timeline itemsArray={itemsArray} itemsMap={itemsMap} />
-      <Gallery imagesArray={imagesArray} imagesMap={imagesMap} />
+      <Timeline items={items} />
+      <Gallery images={images} />
     </div>
   );
 }
