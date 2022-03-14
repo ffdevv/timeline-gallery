@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
 import { Spinner } from 'react-bootstrap';
+import {toArrAndMap} from '../helpers';
 
-export default function Gallery({images, currentMilestone}){
+export default function Gallery({images, currentMilestone, idKey}){
+  const [imagesArray, imagesMap] = toArrAndMap(images, idKey || 'id');
   return(
     <>
       {JSON.stringify(images)}

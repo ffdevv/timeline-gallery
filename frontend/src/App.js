@@ -1,10 +1,11 @@
-import 'react-image-gallery/styles/css/image-gallery.css';
-import './App.css';
-
 import Timeline from './components/Timeline';
 import Gallery from './components/Gallery';
 import prodApi, {testApi} from './api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {Spinner} from 'react-bootstrap';
+
+import 'react-image-gallery/styles/css/image-gallery.css';
+import './App.css';
 
 function App() {
   const api = testApi;
