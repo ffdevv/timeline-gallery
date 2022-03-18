@@ -5,9 +5,8 @@ import {toArrAndMap} from '../helpers';
 
 import './Timeline.css';
 
-export default function Timeline({items, idKey}) {
+export default function Timeline({items, curIdx, setCurIdx}) {
   const [itemsArray, itemsMap] = toArrAndMap(items, idKey || 'id');
-  const [curIdx, setCurIdx] = useState(itemsArray.length-1);
 
   return (
     <div className="horizontal-timeline">
