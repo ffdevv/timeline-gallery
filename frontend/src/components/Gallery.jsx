@@ -1,24 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import ImageGallery from 'react-image-gallery';
 import { Spinner } from 'react-bootstrap';
 import {toArrAndMap} from '../helpers';
 
-export default function Gallery({images, currentMilestone, idKey}){
+export default function Gallery({images}){
   const [imagesArray, imagesMap] = toArrAndMap(images, idKey || 'id');
+  const imageGallery = useRef(null);
+  
+  const goToFirstTimelineId = (idx) => {
+    console.log("move to " + idx);
+  }
+  
+  const handleImageClick = (event) => {
+    console.debug('clicked on image', event.target, 'at index', imageGallery.current.getCurrentIndex());
+  }
+  
+  const handleImageLoad = (event) => {
+    console.debug('loaded image', event.target.src);
+  }
+  
+  const handleSlide = (index) => {
+    // this._resetVideo(); VIDEO
+    console.debug('sliding to index', index);
+  }
+  
+  const handlePause = (index) => {
+    console.debug('paused on index', index);
+  }
+  
+  const handleScreenChange(fullScreenElement) {
+    console.debug('changing fullscreen to', !!fullScreenElement);
+  }
+  
   return(
     <>
       {JSON.stringify(images)}
     </>
     // <ImageGallery
-    //   // ref={i => this._imageGallery = i}
+    //   ref={imageGallery}
     //   items={images}
-    //   // onClick={this._onImageClick.bind(this)}
-    //   // onImageLoad={this._onImageLoad}
-    //   // onSlide={this._onSlide.bind(this)}
-    //   // onPause={this._onPause.bind(this)}
-    //   // onScreenChange={this._onScreenChange.bind(this)}
+    //   onClick={handleImageClick}
+    //   onImageLoad={handleImageLoad}
+    //   onSlide={handleSlide}
+    //   onPause={handlePause}
+    //   onScreenChange={handleScreenChange}
     //   // onPlay={this._onPlay.bind(this)}
-    //   // infinite={this.state.infinite}
+    //   infinite={false}
     //   // showBullets={this.state.showBullets}
     //   // showFullscreenButton={this.state.showFullscreenButton && this.state.showGalleryFullscreenButton}
     //   // showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
