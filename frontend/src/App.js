@@ -31,7 +31,7 @@ function App() {
   // override to inject the filtering after state change without having to re-render the <Gallery />
   const setCurTimelineIdx = (idx) => {
     _setCurTimelineIdx(idx);
-    gallery.current.filterByTimelineId(idx);
+    gallery.current.goToFirstTimelineId(idx);
   }
   
   if (loading !== false){
