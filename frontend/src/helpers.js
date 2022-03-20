@@ -1,6 +1,6 @@
-export const toArrAndMap = (items, idKey) => {
+export const toArrAndMap = (items, idKey = 'id') => {
   let array = [],
-      map = {};
+    map = {};
   items.forEach(itm => {
     array.push(itm);
     map[itm[idKey]] = itm;

@@ -1,8 +1,8 @@
 import Timeline from './components/Timeline';
 import Gallery from './components/Gallery';
-import prodApi, {testApi} from './api';
+import prodApi, { testApi } from './api';
 import { useState, useEffect, useRef } from 'react';
-import {Spinner} from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
 import 'react-image-gallery/styles/css/image-gallery.css';
 import './App.css';
@@ -10,17 +10,18 @@ import './App.css';
 function App() {
   const api = testApi;
   const [currentItem, setCurrentItem] = useState(false);
-  const [items, setItems] = useState({})
-  const [images, setImages] = useState({});
+  const [items, setItems] = useState([])
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState("loading ui");
-  const [curTimelineIdx, _setCurTimelineIdx] = useState(itemsArray.length-1);
+  const [curTimelineIdx, _setCurTimelineIdx] = useState(-1);
   const gallery = useRef(null);
-  
+
   useEffect(() => {
     setLoading("fetching timeline");
     api.getTimelineData().then(data => {
       setItems(data);
       setLoading("fetching images");
+      setCurTimelineIdx(!!items.length ? 0 : -1);
       api.getImagesData().then(data => {
         setImages(data);
         setLoading(false);
@@ -31,10 +32,10 @@ function App() {
   // override to inject the filtering after state change without having to re-render the <Gallery />
   const setCurTimelineIdx = (idx) => {
     _setCurTimelineIdx(idx);
-    gallery.current.goToFirstTimelineId(idx);
+    gallery.current?.goToFirstTimelineId(items[idx].id);
   }
-  
-  if (loading !== false){
+
+  if (loading !== false) {
     return (
       <div className="w-100 text-center">
         <Spinner animation="grow" variant="secondary" />

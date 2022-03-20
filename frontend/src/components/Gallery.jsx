@@ -1,38 +1,40 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react';
 import ImageGallery from 'react-image-gallery';
 import { Spinner } from 'react-bootstrap';
-import {toArrAndMap} from '../helpers';
+import { toArrAndMap } from '../helpers';
 
-export default function Gallery({images}){
-  const [imagesArray, imagesMap] = toArrAndMap(images, idKey || 'id');
+const Gallery = forwardRef(({ images }, ref) => {
+  const [imagesArray, imagesMap] = toArrAndMap(images);
   const imageGallery = useRef(null);
-  
-  const goToFirstTimelineId = (idx) => {
-    console.log("move to " + idx);
-  }
-  
+
+  useImperativeHandle(ref, () => ({
+    goToFirstTimelineId: (idx) => {
+      console.log("move to " + idx);
+    }
+  }))
+
   const handleImageClick = (event) => {
     console.debug('clicked on image', event.target, 'at index', imageGallery.current.getCurrentIndex());
   }
-  
+
   const handleImageLoad = (event) => {
     console.debug('loaded image', event.target.src);
   }
-  
+
   const handleSlide = (index) => {
     // this._resetVideo(); VIDEO
     console.debug('sliding to index', index);
   }
-  
+
   const handlePause = (index) => {
     console.debug('paused on index', index);
   }
-  
-  const handleScreenChange(fullScreenElement) {
+
+  const handleScreenChange = (fullScreenElement) => {
     console.debug('changing fullscreen to', !!fullScreenElement);
   }
-  
-  return(
+
+  return (
     <>
       {JSON.stringify(images)}
     </>
@@ -61,4 +63,6 @@ export default function Gallery({images}){
     //   // useWindowKeyDown={this.state.useWindowKeyDown}
     // />
   )
-}
+});
+
+export default Gallery;

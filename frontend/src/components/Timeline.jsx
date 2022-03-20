@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import HorizontalTimeline from "react-horizontal-timeline";
-import {Spinner} from "react-bootstrap";
-import {toArrAndMap} from '../helpers';
+import { Spinner } from "react-bootstrap";
+import { toArrAndMap } from '../helpers';
 
 import './Timeline.css';
 
-export default function Timeline({items, curIdx, setCurIdx}) {
-  const [itemsArray, itemsMap] = toArrAndMap(items, idKey || 'id');
-
+const Timeline = ({ items, curIdx, setCurIdx }) => {
+  const [itemsArray, itemsMap] = toArrAndMap(items);
   return (
     <div className="horizontal-timeline">
       <HorizontalTimeline
@@ -26,3 +25,5 @@ export default function Timeline({items, curIdx, setCurIdx}) {
     </div>
   )
 }
+
+export default Timeline;
