@@ -41,7 +41,7 @@ export const testApi = {
         id: 6
       }
     ]
-  , 500),
+    , 500),
   getImagesData: () => promise(
     [
       {
@@ -62,15 +62,51 @@ export const testApi = {
         id: 3,
         timeline: 2
       },
+      {
+        original: 'https://picsum.photos/id/1018/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1018/250/150/',
+        id: 4,
+        timeline: 1
+      },
+      {
+        original: 'https://picsum.photos/id/1015/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1015/250/150/',
+        id: 5,
+        timeline: 1
+      },
+      {
+        original: 'https://picsum.photos/id/1019/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1019/250/150/',
+        id: 6,
+        timeline: 2
+      },
+      {
+        original: 'https://picsum.photos/id/1018/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1018/250/150/',
+        id: 7,
+        timeline: 1
+      },
+      {
+        original: 'https://picsum.photos/id/1015/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1015/250/150/',
+        id: 8,
+        timeline: 1
+      },
+      {
+        original: 'https://picsum.photos/id/1019/1000/600/',
+        thumbnail: 'https://picsum.photos/id/1019/250/150/',
+        id: 9,
+        timeline: 2
+      },
     ], 500)
 }
 
 export default {
   getImagesData: () => axios({
-    'method':'GET',
+    'method': 'GET',
     'url': getConfigEndpoint('getImagesData'),
     'headers': {
-      'content-type':'application/json',
+      'content-type': 'application/json',
     },
   })
 }

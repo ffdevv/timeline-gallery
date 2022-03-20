@@ -3,13 +3,14 @@ import ImageGallery from 'react-image-gallery';
 import { Spinner } from 'react-bootstrap';
 import { toArrAndMap } from '../helpers';
 
+
 const Gallery = forwardRef(({ images }, ref) => {
   const [imagesArray, imagesMap] = toArrAndMap(images);
   const imageGallery = useRef(null);
 
   useImperativeHandle(ref, () => ({
     goToFirstTimelineId: (idx) => {
-      console.log("move to " + idx);
+      console.debug("move to", idx);
     }
   }))
 
@@ -36,32 +37,32 @@ const Gallery = forwardRef(({ images }, ref) => {
 
   return (
     <>
-      {JSON.stringify(images)}
+      {/* {JSON.stringify(images)} */}
+      <ImageGallery
+        ref={imageGallery}
+        items={images}
+        onClick={handleImageClick}
+        onImageLoad={handleImageLoad}
+        onSlide={handleSlide}
+        onPause={handlePause}
+        onScreenChange={handleScreenChange}
+        // onPlay={this._onPlay.bind(this)}
+        infinite={false}
+        showBullets={false}
+        showFullscreenButton={true}
+        // showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
+        showThumbnails={true}
+        showIndex={false}
+        showNav={true}
+        // isRTL={this.state.isRTL}
+        // thumbnailPosition={this.state.thumbnailPosition}
+        // slideDuration={parseInt(this.state.slideDuration)}
+        // slideInterval={parseInt(this.state.slideInterval)}
+        // slideOnThumbnailOver={this.state.slideOnThumbnailOver}
+        additionalClass="app-image-gallery"
+      // useWindowKeyDown={this.state.useWindowKeyDown}
+      />
     </>
-    // <ImageGallery
-    //   ref={imageGallery}
-    //   items={images}
-    //   onClick={handleImageClick}
-    //   onImageLoad={handleImageLoad}
-    //   onSlide={handleSlide}
-    //   onPause={handlePause}
-    //   onScreenChange={handleScreenChange}
-    //   // onPlay={this._onPlay.bind(this)}
-    //   infinite={false}
-    //   // showBullets={this.state.showBullets}
-    //   // showFullscreenButton={this.state.showFullscreenButton && this.state.showGalleryFullscreenButton}
-    //   // showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
-    //   // showThumbnails={this.state.showThumbnails}
-    //   // showIndex={this.state.showIndex}
-    //   // showNav={this.state.showNav}
-    //   // isRTL={this.state.isRTL}
-    //   // thumbnailPosition={this.state.thumbnailPosition}
-    //   // slideDuration={parseInt(this.state.slideDuration)}
-    //   // slideInterval={parseInt(this.state.slideInterval)}
-    //   // slideOnThumbnailOver={this.state.slideOnThumbnailOver}
-    //   additionalClass="app-image-gallery"
-    //   // useWindowKeyDown={this.state.useWindowKeyDown}
-    // />
   )
 });
 
