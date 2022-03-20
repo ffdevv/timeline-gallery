@@ -9,7 +9,6 @@ import './App.css';
 
 function App() {
   const api = testApi;
-  const [currentItem, setCurrentItem] = useState(false);
   const [items, setItems] = useState([])
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState("loading ui");
@@ -17,17 +16,20 @@ function App() {
   const gallery = useRef(null);
 
   useEffect(() => {
+    setCurTimelineIdx(!!items.length ? 0 : -1);
+  }, [items])
+
+  useEffect(() => {
     setLoading("fetching timeline");
     api.getTimelineData().then(data => {
       setItems(data);
       setLoading("fetching images");
-      setCurTimelineIdx(!!items.length ? 0 : -1);
       api.getImagesData().then(data => {
         setImages(data);
         setLoading(false);
       })
     })
-  }, [])
+  }, [api])
 
   // override to inject the filtering after state change without having to re-render the <Gallery />
   const setCurTimelineIdx = (idx) => {
