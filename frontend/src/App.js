@@ -2,8 +2,7 @@ import Timeline from './components/Timeline';
 import Gallery from './components/Gallery';
 import prodApi, { testApi } from './api';
 import { useState, useEffect, useRef } from 'react';
-import { Spinner } from 'react-bootstrap';
-
+import { Spinner, Container } from 'react-bootstrap';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import './App.css';
 
@@ -49,7 +48,9 @@ function App() {
   return (
     <div className="App">
       <Timeline items={items} curIdx={curTimelineIdx} setCurIdx={setCurTimelineIdx} />
-      <Gallery images={images} ref={gallery} />
+      <Container>
+        <Gallery images={images} ref={gallery} />
+      </Container>
     </div>
   );
 }
