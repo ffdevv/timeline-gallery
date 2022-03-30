@@ -20,7 +20,7 @@ const Gallery = forwardRef(({ images }, ref) => {
   const toggleFavorite = (id) => {
     if (favorites.has(id)) return favorites.delete(id);
     favorites.add(id);
-    setFavorites(favorites);
+    setFavorites(new Set(favorites));
   }
 
   const handleImageClick = (event) => {
