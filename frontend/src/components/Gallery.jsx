@@ -19,7 +19,8 @@ const Gallery = forwardRef(({ images }, ref) => {
 
   const toggleFavorite = (id) => {
     if (favorites.has(id)) return favorites.delete(id);
-    favorites.add(id)
+    favorites.add(id);
+    setFavorites(favorites);
   }
 
   const handleImageClick = (event) => {
